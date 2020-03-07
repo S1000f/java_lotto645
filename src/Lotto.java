@@ -3,6 +3,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +18,7 @@ import org.json.simple.JSONObject;
 public class Lotto extends JFrame implements MouseListener, KeyListener {
 	MyButtons[] mbt = new MyButtons[6];
 	BonusButton mbt7 = new BonusButton(" ");
-	JTextField[] mynumTxt = new JTextField[7];
+	JTextField[] mynumTxt = new JTextField[6];
 	
 	JButton checkBtn = new JButton("불러오기");
 	JTextField turnTxt = new JTextField();
@@ -63,11 +66,7 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		getContentPane().add(checkBtn);
 	}
 	
-	public void event() {
-		checkBtn.addMouseListener(this);
-		turnTxt.addKeyListener(this);
-		
-	}
+	
 	
 	public void showResult() {
 		JsonReader json = new JsonReader();
@@ -84,6 +83,7 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 			mbt7.setText(String.valueOf(jo.get("bnusNo")));
 			
 			calcWin(mbt,mbt7);
+			collectMynum();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,12 +91,19 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		turnlbl.setText(turnTxt.getText() + "회차");
 	}
 	
+	public void collectMynum() {
+		List<String> myNumList = new ArrayList<>();
+		for(int i = 0; i < mynumTxt.length; i++) {
+			myNumList.add(mynumTxt[i].getText());
+		}
+	}
+	
 	public void calcWin(MyButtons[] mbt, BonusButton mbt7) {
 		matchlbl.setText("맞은 번호 >>>");
 		int count = 0;
 		int countBonus = 0;
-		for(int i = 0; i < 6; i++) {
-			for(int j = 0; j < 6; j++) {
+		for(int i = 0; i < mynumTxt.length; i++) {
+			for(int j = 0; j < mynumTxt.length; j++) {
 				if(mynumTxt[i].getText().equals(mbt[j].getText())) {
 					matchlbl.setText(matchlbl.getText()+" "+mynumTxt[i].getText()+", ");
 					count++;
@@ -104,7 +111,7 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 			}
 		}
 		
-		for(int i = 0; i < 7; i++) {
+		for(int i = 0; i < mynumTxt.length; i++) {
 			if(mynumTxt[i].getText().equals(mbt7.getText())) {
 				matchlbl.setText(matchlbl.getText()+"+보너스번호 "+ mynumTxt[i].getText());
 				countBonus = 1;
@@ -123,6 +130,9 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 			matchlbl.setText(matchlbl.getText() + "  결과: 5등 입니다");
 		}
 	}
+	public static void main(String[] args) throws Exception {
+		new Lotto();
+	}
 	
 	public Lotto() { // constructor
 		super("로또번호 조회");
@@ -138,9 +148,10 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	public static void main(String[] args) throws Exception {
-		new Lotto();
+		
+	public void event() {
+		checkBtn.addMouseListener(this);
+		turnTxt.addKeyListener(this);
 	}
 	
 	@Override
@@ -160,32 +171,26 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) { //누르고 뗐을때
-		System.out.println("CLICKED");
-		if(e.getSource()==checkBtn);
 		showResult();
+		collectMynum();
 	}
 	
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		System.out.println("Entered");
 		
 	}
 	
 	@Override
 	public void mouseExited(MouseEvent e) {
-		System.out.println("exited");
 		
 	}
 	
 	@Override
 	public void mousePressed(MouseEvent e) { //계속 누르고 있는 상태
-		System.out.println("Pressed");
-		
 	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) { // 눌렀다가 떼었을때
-		System.out.println("Released");
 		
 	}
 }
