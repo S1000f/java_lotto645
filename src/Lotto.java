@@ -6,6 +6,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -96,6 +98,12 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		for(int i = 0; i < mynumTxt.length; i++) {
 			myNumList.add(mynumTxt[i].getText());
 		}
+		
+		int checksum = Checking.checkNynum(myNumList);	
+		Optional.of(checksum)
+				.filter(n-> n == -1)
+				.ifPresent(n-> yourlbl.setText(">>> 숫자가 아닌 값을 입력했습니다!!"));
+				   
 	}
 	
 	public void calcWin(MyButtons[] mbt, BonusButton mbt7) {
