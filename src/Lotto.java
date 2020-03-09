@@ -44,7 +44,7 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		getContentPane().add(mbt7);
 		
 		for(int i = 0; i < mynumTxt.length; i++) {
-			mynumTxt[i] = new JTextField("");
+			mynumTxt[i] = new JTextField();
 			mynumTxt[i].setBounds(15+wm*i, 150, 50, 50);
 			getContentPane().add(mynumTxt[i]);
 		}
@@ -85,19 +85,23 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 			mbt7.setText(String.valueOf(jo.get("bnusNo")));
 			
 			calcWin(mbt,mbt7);
-			collectMynum();
-			
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		turnlbl.setText(turnTxt.getText() + "회차");
 	}
 	
+		
 	public void collectMynum() {
 		List<String> myNumList = new ArrayList<>();
 		for(int i = 0; i < mynumTxt.length; i++) {
-			myNumList.add(mynumTxt[i].getText());
-		}
+			if(mynumTxt[i].getText().length() == 0) {
+				yourlbl.setText(">>> 누락된 숫자가 있습니다!!");
+				return;
+			} else
+				myNumList.add(mynumTxt[i].getText());
+		}					  
 		
 		int checksum = Checking.checkNynum(myNumList);	
 		Optional.of(checksum)
