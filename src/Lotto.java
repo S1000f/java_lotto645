@@ -94,6 +94,7 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 	
 		
 	public void collectMynum() {
+		int checksum = 0;
 		List<String> myNumList = new ArrayList<>();
 		for(int i = 0; i < mynumTxt.length; i++) {
 			if(mynumTxt[i].getText().length() == 0) {
@@ -103,12 +104,17 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 				myNumList.add(mynumTxt[i].getText());
 		}					  
 		
-		int checksum = Checking.checkNynum(myNumList);	
+		checksum = Checking.checkNynum(myNumList);	
 		Optional.of(checksum)
+				
 				.filter(n-> n == -1)
 				.ifPresent(n-> yourlbl.setText(">>> 숫자가 아닌 값을 입력했습니다!!"));
-				   
+		
+		
 	}
+	
+	
+	
 	
 	public void calcWin(MyButtons[] mbt, BonusButton mbt7) {
 		matchlbl.setText("맞은 번호 >>>");
