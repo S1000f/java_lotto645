@@ -94,21 +94,23 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 	
 		
 	public void collectMynum() {
+		int checksum;
 		List<String> myNumList = new ArrayList<>();
+		
 		for(int i = 0; i < mynumTxt.length; i++) {
-			if(mynumTxt[i].getText().length() == 0) {
-				yourlbl.setText(">>> 누락된 숫자가 있습니다!!");
-				return;
-			} else
-				myNumList.add(mynumTxt[i].getText());
+			myNumList.add(mynumTxt[i].getText());
 		}					  
 		
-		int checksum = Checking.checkNynum(myNumList);	
-		Optional.of(checksum)
-				.filter(n-> n == -1)
-				.ifPresent(n-> yourlbl.setText(">>> 숫자가 아닌 값을 입력했습니다!!"));
-				   
+		Checking checking = new Checking();
+		checksum = checking.getChecksum(myNumList);
+		System.out.println("checksum: " + checksum);
+		
+		
+		return;
 	}
+	
+	
+	
 	
 	public void calcWin(MyButtons[] mbt, BonusButton mbt7) {
 		matchlbl.setText("맞은 번호 >>>");
