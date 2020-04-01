@@ -12,25 +12,22 @@ import org.json.simple.parser.JSONParser;
 public class JsonReader {
 	public JSONObject connectionUrlToJSON(String turn) {
 		try {
-		URL url = new URL("https://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=" + turn); // 중요
+		URL url = new URL("https://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=" + turn); 
 		HttpsURLConnection conn = null;
 		HostnameVerifier myhost = new HostnameVerifier() {
 			@Override
 			public boolean verify(String hostname, SSLSession session) {
-				return true; //중요
+				return true; 
 			}
 		};
 		HttpsURLConnection.setDefaultHostnameVerifier(myhost);
-		conn = (HttpsURLConnection)url.openConnection(); //중요
+		conn = (HttpsURLConnection)url.openConnection(); 
 		
-		/////////////////////////////////////////////////////////////////////////////////////////////
-		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream())); //중요
+		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream())); 
 		String iLine = br.readLine();
-		//System.out.println(iLine);
-		
 				
 		JSONParser ps = new JSONParser();
-		JSONObject jobj = (JSONObject)ps.parse(iLine); //중요
+		JSONObject jobj = (JSONObject)ps.parse(iLine);
 		
 		return jobj;
 		

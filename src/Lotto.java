@@ -1,13 +1,9 @@
-import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,7 +29,6 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 	public void init() {
 		getContentPane().setLayout(null);
 		
-		int w = 60;
 		int wm = 70;
 		for(int i = 0; i < mbt.length; i++) {
 			mbt[i] = new MyButtons("");
@@ -103,14 +98,21 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		
 		Checking checking = new Checking();
 		checksum = checking.getChecksum(myNumList);
-		System.out.println("checksum: " + checksum);
 		
+		if(checksum == -1) {
+			yourlbl.setText("숫자가 아닌 값을 입력하셨습니다.");
+			return;
+		} else if(checksum == -2) {
+			yourlbl.setText("누락된 숫자가 있습니다.");
+			return;
+		} else if(checksum == -3) {
+			yourlbl.setText("잘못된 번호를 입력하셨습니다.");
+			return;
+		}
 		
+		// calcWin(mbt,mbt7);
 		return;
 	}
-	
-	
-	
 	
 	public void calcWin(MyButtons[] mbt, BonusButton mbt7) {
 		matchlbl.setText("맞은 번호 >>>");
