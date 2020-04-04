@@ -79,8 +79,6 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 			}
 			mbt7.setText(String.valueOf(jo.get("bnusNo")));
 			
-			calcWin(mbt,mbt7);
-						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -100,18 +98,22 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		checksum = checking.getChecksum(myNumList);
 		
 		if(checksum == -1) {
-			yourlbl.setText("숫자가 아닌 값을 입력하셨습니다.");
+			yourlbl.setText(">>> 숫자가 아닌 값을 입력하셨습니다!!");
 			return;
 		} else if(checksum == -2) {
-			yourlbl.setText("누락된 숫자가 있습니다.");
+			yourlbl.setText(">>> 누락된 숫자가 있습니다!!");
 			return;
 		} else if(checksum == -3) {
-			yourlbl.setText("잘못된 번호를 입력하셨습니다.");
+			yourlbl.setText(">>> 로또번호를 벗어나는 숫자를 입력하셨습니다!!");
 			return;
+		} else if(checksum == -4) {
+			yourlbl.setText(">>> 중복된 숫자가 있습니다!!");
+			return;
+		} else {
+			yourlbl.setText(">>> 정상 로또번호 입력완료");
+			calcWin(mbt,mbt7);
 		}
 		
-		// calcWin(mbt,mbt7);
-		return;
 	}
 	
 	public void calcWin(MyButtons[] mbt, BonusButton mbt7) {
@@ -145,7 +147,11 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 		} else if(count == 3) {
 			matchlbl.setText(matchlbl.getText() + "  결과: 5등 입니다");
 		}
+		
+		return;
 	}
+	
+	
 	public static void main(String[] args) throws Exception {
 		new Lotto();
 	}
@@ -177,7 +183,7 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode()==KeyEvent.VK_ENTER);
+		
 	}
 	
 	@Override
@@ -202,11 +208,11 @@ public class Lotto extends JFrame implements MouseListener, KeyListener {
 	}
 	
 	@Override
-	public void mousePressed(MouseEvent e) { //계속 누르고 있는 상태
+	public void mousePressed(MouseEvent e) {
 	}
 	
 	@Override
-	public void mouseReleased(MouseEvent e) { // 눌렀다가 떼었을때
+	public void mouseReleased(MouseEvent e) {
 		
 	}
 }
