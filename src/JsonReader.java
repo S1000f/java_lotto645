@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 public class JsonReader {
 	public JSONObject connectionUrlToJSON(String turn) {
 		try {
-		URL url = new URL("https://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=" + turn); 
+		URL url = new URL("https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=" + turn); 
 		HttpsURLConnection conn = null;
 		HostnameVerifier myhost = new HostnameVerifier() {
 			@Override
@@ -33,6 +33,7 @@ public class JsonReader {
 		
 		} catch (Exception e) {
 			System.out.println("접속실패!");
+			e.printStackTrace();
 			return null;
 		}
 	}

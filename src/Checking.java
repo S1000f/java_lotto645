@@ -30,7 +30,7 @@ public class Checking {
 		HashSet<String> set = new HashSet<>(list);
 		list = new ArrayList<>(set);
 		
-		if(list.size() < 6) {
+		if(list.size() < 6 && checksum != -2) {
 			checksum = -4;
 		}
 	}
