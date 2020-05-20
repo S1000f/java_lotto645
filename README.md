@@ -5,7 +5,7 @@ Check your Lotto6/45 numbers
 
 ![lotto01](images/lotto01.png)
 
-## 로또번호 유효성 체크기능
+## 1. 로또번호 유효성 체크기능
 
 입력한 로또번호가 올바른 번호의 조합인지 미리 검증한 뒤 당첨결과를 출력함으로써, 사용자의 번호 입력 오기로 인한 잘못된 결과출력을 미연에 방지합니다.
 
@@ -29,3 +29,10 @@ Check your Lotto6/45 numbers
 ---
 숫자 이외의 문자나 기호를 입력했을시 메시지를 출력합니다.
 ![lotto-numberformat](images/lotto-numberformat.png)
+
+## 2. 개발환경
+
++ SDK: Oracle JDK 1.8.0_242
++ IDE: eclipse 2019-12
++ 외부 라이브러리: json-simple-1.1.1.jar source from: https://github.com/fangyidong/json-simple
+
