@@ -10,6 +10,13 @@ Check your Lotto6/45 numbers
 입력한 로또번호가 올바른 번호의 조합인지 미리 검증한 뒤 당첨결과를 출력함으로써, 사용자의 번호 입력 오기로 인한 잘못된 결과출력을 미연에 방지합니다.
 
 ### 1. 누락 검증
+---
+누락된 번호가 있을시 메시지를 출력합니다.
 
 ![lotto-ommit](images/lotto-ommit.png)
+
+### 2. 중복번호 검증
+---
+똑같은 번호가 2개 이상 존재시 메시지를 출력합니다.
+![lotto-dupli](images/lotto-dupli.png)
 
