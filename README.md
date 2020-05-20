@@ -20,3 +20,12 @@ Check your Lotto6/45 numbers
 똑같은 번호가 2개 이상 존재시 메시지를 출력합니다.
 ![lotto-dupli](images/lotto-dupli.png)
 
+### 3. 로또번호 범위 검증
+---
+로또번호는 1 ~ 45의 범위를 가집니다. 입력한 숫자가 이 범위를 벗어나지 않는지 검증합니다.
+![lotto-outofrange](images/lotto-outofrange.png)
+
+### 4. 숫자 외 입력 검증
+---
+숫자 이외의 문자나 기호를 입력했을시 메시지를 출력합니다.
+![lotto-numberformat](images/lotto-numberformat.png)
